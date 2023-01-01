@@ -20,10 +20,23 @@ public class Product {
     private BigDecimal productSalesPrice;
     private String productImg;
     private int quantity;
-    @ManyToOne
-    @JoinColumn(name="cart_id", nullable=false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cart_id", nullable = false)
     private Cart cart;
 
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "productID=" + productID +
+                ", productName='" + productName + '\'' +
+                ", productPrice=" + productPrice +
+                ", productSalesPrice=" + productSalesPrice +
+                ", productImg='" + productImg + '\'' +
+                ", quantity=" + quantity +
+                ", cart=" + cart.getCartID() +
+                '}';
+    }
 
 
 }
