@@ -3,6 +3,7 @@ package com.bitsmilez.cartmicroservice.port.mapper;
 import com.bitsmilez.cartmicroservice.core.domain.model.Cart;
 import com.bitsmilez.cartmicroservice.core.domain.model.Product;
 import com.bitsmilez.cartmicroservice.config.MQConfig.ProductMessage;
+import com.bitsmilez.cartmicroservice.core.domain.model.ProductID;
 import com.bitsmilez.cartmicroservice.port.dto.CartDTO;
 import com.bitsmilez.cartmicroservice.port.dto.ProductDTO;
 import org.junit.jupiter.api.Test;
@@ -31,7 +32,7 @@ class MapperTest {
 
     //Product
 
-    Product productEntity = new Product(id,productName,productPrice,productSalesPrice,productImg,quantity,cartEntity);
+    Product productEntity = new Product(new ProductID(id,cartID),productName,productPrice,productSalesPrice,productImg,quantity,cartEntity);
     ProductDTO productDTO = new ProductDTO(id,productName,productPrice,productSalesPrice,productImg,quantity,cartDTO);
 
 
