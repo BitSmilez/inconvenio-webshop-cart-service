@@ -1,4 +1,4 @@
-package com.bitsmilez.cartmicroservice.port.config;
+package com.bitsmilez.cartmicroservice.config;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
