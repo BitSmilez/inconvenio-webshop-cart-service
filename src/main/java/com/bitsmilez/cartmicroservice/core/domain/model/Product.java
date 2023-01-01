@@ -6,15 +6,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
-import java.util.UUID;
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Product {
-    @Id
-    private UUID productID;
+    @EmbeddedId
+    private ProductID productID;
     private String productName;
     private BigDecimal productPrice;
     private BigDecimal productSalesPrice;
