@@ -1,5 +1,6 @@
 package com.bitsmilez.cartmicroservice.port.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,7 +18,19 @@ public class ProductDTO {
     private BigDecimal productSalesPrice;
     private String productImg;
     private int quantity;
+    @JsonIgnore
     private CartDTO cart;
 
-
+    @Override
+    public String toString() {
+        return "ProductDTO{" +
+                "productID=" + productID +
+                ", productName='" + productName + '\'' +
+                ", productPrice=" + productPrice +
+                ", productSalesPrice=" + productSalesPrice +
+                ", productImg='" + productImg + '\'' +
+                ", quantity=" + quantity +
+                ", cart=" + cart.getCartID() +
+                '}';
+    }
 }
