@@ -12,8 +12,9 @@ import java.util.ArrayList;
 public class Mapper {
     public static ProductDTO toProductDTO(Product product){
 
-        return new ModelMapper().map(product,ProductDTO.class);
-
+        ProductDTO dto = new ModelMapper().map(product,ProductDTO.class);
+        dto.setProductID(product.getProductID().getProductID());
+        return dto;
     }
     public static ProductDTO toProductDTO(ProductMessage message){
         CartDTO cart = new CartDTO(message.getUserID());
