@@ -2,7 +2,7 @@ package com.bitsmilez.cartmicroservice.port.mapper;
 
 import com.bitsmilez.cartmicroservice.core.domain.model.Cart;
 import com.bitsmilez.cartmicroservice.core.domain.model.Product;
-import com.bitsmilez.cartmicroservice.port.MQ.ProductMessage;
+import com.bitsmilez.cartmicroservice.config.MQConfig.ProductMessage;
 import com.bitsmilez.cartmicroservice.port.dto.CartDTO;
 import com.bitsmilez.cartmicroservice.port.dto.ProductDTO;
 import org.junit.jupiter.api.Test;
@@ -23,6 +23,7 @@ class MapperTest {
 
 
 
+
     String cartID="12345";
     //CART
     Cart cartEntity = new Cart(cartID);
@@ -32,6 +33,7 @@ class MapperTest {
 
     Product productEntity = new Product(id,productName,productPrice,productSalesPrice,productImg,quantity,cartEntity);
     ProductDTO productDTO = new ProductDTO(id,productName,productPrice,productSalesPrice,productImg,quantity,cartDTO);
+
 
     @Test
     void ProductEntityToDTO() {
@@ -59,10 +61,15 @@ class MapperTest {
 
     @Test
     void CartEntitytoCartDTO() {
-
+        cartDTO.addItem(productDTO);
         CartDTO testDTO = Mapper.toCartDTO(cartEntity);
+        testDTO.addItem(productDTO);
+        BigDecimal price = productDTO.getProductSalesPrice()!= null ? productDTO.getProductSalesPrice() : productDTO.getProductPrice();
+        BigDecimal total = (price.multiply(BigDecimal.valueOf(productDTO.getQuantity())));
 
         assertEquals(cartDTO,testDTO);
+        assertEquals(cartDTO.getTotal(),total);
+        assertEquals(testDTO.getTotal(),total);
     }
 
     @Test
