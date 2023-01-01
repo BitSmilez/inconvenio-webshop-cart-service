@@ -1,7 +1,7 @@
 package com.bitsmilez.cartmicroservice.port.MQAdapter;
 
-import com.bitsmilez.cartmicroservice.config.MQConfig;
-import com.bitsmilez.cartmicroservice.config.ProductMessage;
+import com.bitsmilez.cartmicroservice.config.MQConfig.MQConfig;
+import com.bitsmilez.cartmicroservice.config.MQConfig.ProductMessage;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 

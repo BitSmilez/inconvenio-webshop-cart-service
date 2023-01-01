@@ -1,4 +1,4 @@
-package com.bitsmilez.cartmicroservice.config;
+package com.bitsmilez.cartmicroservice.config.MQConfig;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

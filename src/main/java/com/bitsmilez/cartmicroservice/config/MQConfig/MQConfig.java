@@ -1,4 +1,4 @@
-package com.bitsmilez.cartmicroservice.config;
+package com.bitsmilez.cartmicroservice.config.MQConfig;
 
 import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
