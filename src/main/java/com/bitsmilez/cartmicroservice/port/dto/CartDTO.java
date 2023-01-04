@@ -22,7 +22,6 @@ public class CartDTO {
 
     public void addItem(ProductDTO product) {
         items.add(product);
-        product.setCart(this);
         calculateTotal();
     }
 
