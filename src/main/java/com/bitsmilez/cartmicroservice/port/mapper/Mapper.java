@@ -1,6 +1,5 @@
 package com.bitsmilez.cartmicroservice.port.mapper;
 
-import com.bitsmilez.cartmicroservice.core.domain.model.Cart;
 import com.bitsmilez.cartmicroservice.core.domain.model.Product;
 import com.bitsmilez.cartmicroservice.config.MQConfig.ProductMessage;
 import com.bitsmilez.cartmicroservice.port.dto.CartDTO;
@@ -19,9 +18,9 @@ public class Mapper {
     }
 
     public static ProductDTO toProductDTO(ProductMessage message) {
-        CartDTO cart = new CartDTO(message.getUserID());
-        cart.setCartID(message.getUserID());
-        return new ProductDTO(UUID.fromString(message.getProductID()), message.getProductName(), message.getProductPrice(), message.getProductSalesPrice(), message.getProductImg(), message.getQuantity(), cart);
+
+
+        return new ProductDTO(UUID.fromString(message.getProductID()), message.getUserID(), message.getProductName(), message.getProductPrice(), message.getProductSalesPrice(), message.getProductImg(), message.getQuantity());
 
     }
 
@@ -32,31 +31,8 @@ public class Mapper {
     }
 
 
-    public static CartDTO toCartDTO(Cart cart) {
-        ArrayList<ProductDTO> products = new ArrayList<>();
-        for (Product product : cart.getItems()) {
-            products.add(toProductDTO(product));
-        }
 
 
-        CartDTO dto = new ModelMapper().map(cart, CartDTO.class);
-        dto.setItems(products);
-        dto.calculateTotal();
-        return dto;
 
-
-    }
-
-    public static Cart toCart(CartDTO cart) {
-        ArrayList<Product> products = new ArrayList<>();
-        for (ProductDTO product : cart.getItems()) {
-            products.add(toProduct(product));
-        }
-        Cart entity = new ModelMapper().map(cart, Cart.class);
-        entity.setItems(products);
-        return entity;
-
-
-    }
 
 }

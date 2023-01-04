@@ -1,6 +1,5 @@
 package com.bitsmilez.cartmicroservice.port.mapper;
 
-import com.bitsmilez.cartmicroservice.core.domain.model.Cart;
 import com.bitsmilez.cartmicroservice.core.domain.model.Product;
 import com.bitsmilez.cartmicroservice.config.MQConfig.ProductMessage;
 import com.bitsmilez.cartmicroservice.core.domain.model.ProductID;
@@ -26,13 +25,12 @@ class MapperTest {
 
     String cartID = id.toString();
     //CART
-    Cart cartEntity = new Cart(cartID);
     CartDTO cartDTO = new CartDTO(cartID);
 
     //Product
 
-    Product productEntity = new Product(new ProductID(productID, cartID), productName, productPrice, productSalesPrice, productImg, quantity, cartEntity);
-    ProductDTO productDTO = new ProductDTO(productID, productName, productPrice, productSalesPrice, productImg, quantity, cartDTO);
+    Product productEntity = new Product(new ProductID(productID, cartID), productName, productPrice, productSalesPrice, productImg, quantity);
+    ProductDTO productDTO = new ProductDTO(productID,cartDTO.getCartID(), productName, productPrice, productSalesPrice, productImg, quantity);
 
 
     @Test
@@ -59,22 +57,7 @@ class MapperTest {
         assertEquals(productEntity, testEntity);
     }
 
-    @Test
-    void CartEntitytoCartDTO() {
-        cartDTO.addItem(productDTO);
-        CartDTO testDTO = Mapper.toCartDTO(cartEntity);
-        testDTO.addItem(productDTO);
-        BigDecimal price = productDTO.getProductSalesPrice() != null ? productDTO.getProductSalesPrice() : productDTO.getProductPrice();
-        BigDecimal total = (price.multiply(BigDecimal.valueOf(productDTO.getQuantity())));
 
-        assertEquals(cartDTO, testDTO);
-        assertEquals(cartDTO.getTotal(), total);
-        assertEquals(testDTO.getTotal(), total);
-    }
 
-    @Test
-    void CartDTOtoCartEntity() {
-        Cart testEntity = Mapper.toCart(cartDTO);
-        assertEquals(cartEntity, testEntity);
-    }
+
 }
