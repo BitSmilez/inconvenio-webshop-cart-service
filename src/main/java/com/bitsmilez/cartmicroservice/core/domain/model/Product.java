@@ -19,9 +19,7 @@ public class Product {
     private BigDecimal productSalesPrice;
     private String productImg;
     private int quantity;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cart_id", nullable = false)
-    private Cart cart;
+
 
 
     @Override
@@ -33,7 +31,6 @@ public class Product {
                 ", productSalesPrice=" + productSalesPrice +
                 ", productImg='" + productImg + '\'' +
                 ", quantity=" + quantity +
-                ", cart=" + cart.getCartID() +
                 '}';
     }
 
