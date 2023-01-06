@@ -2,11 +2,9 @@ package com.bitsmilez.cartmicroservice.port.mapper;
 
 import com.bitsmilez.cartmicroservice.core.domain.model.Product;
 import com.bitsmilez.cartmicroservice.config.MQConfig.ProductMessage;
-import com.bitsmilez.cartmicroservice.port.dto.CartDTO;
 import com.bitsmilez.cartmicroservice.port.dto.ProductDTO;
 import org.modelmapper.ModelMapper;
 
-import java.util.ArrayList;
 import java.util.UUID;
 
 public class Mapper {
