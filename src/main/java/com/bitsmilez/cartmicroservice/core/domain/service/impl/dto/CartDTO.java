@@ -16,15 +16,18 @@ public class CartDTO {
 
     private BigDecimal subTotal;
 
-    private BigDecimal vat;
+    private BigDecimal subTotalVat;
 
-    private BigDecimal netTotal;
 
     private double taxRate = 19.0;
 
     private int quantity;
 
-    private BigDecimal shipping;
+    private BigDecimal shppingFreeLimit= new BigDecimal("100.00");
+    private BigDecimal shipping = new BigDecimal("5.00");
+
+    private BigDecimal total;
+    private BigDecimal totalVat;
     public CartDTO(String cartID) {
         this.cartID=cartID;
 
@@ -51,19 +54,29 @@ public class CartDTO {
 
 
     public void calculateTotal (){
-        BigDecimal total = new BigDecimal("0.0");
+        BigDecimal subTotal = new BigDecimal("0.0");
         for (ProductDTO product: items) {
             BigDecimal price = product.getProductSalesPrice()!= null ? product.getProductSalesPrice() : product.getProductPrice();
-            total =  total.add(price.multiply(BigDecimal.valueOf(product.getQuantity())));
+            subTotal =  subTotal.add(price.multiply(BigDecimal.valueOf(product.getQuantity())));
         }
-        this.subTotal = total;
+        this.subTotal = subTotal;
+        this.shipping = subTotal.compareTo(shppingFreeLimit) >= 0 ? new BigDecimal("0.0") : shipping;
+
+        this.total = subTotal.add(this.shipping);
     }
 
     public void calculateVat(){
-        BigDecimal vatRate =  BigDecimal.valueOf(taxRate).divide(BigDecimal.valueOf(100)).add(BigDecimal.valueOf(1));
-        MathContext m = new MathContext(5);
-        this.netTotal = (this.subTotal.divide(vatRate,m));
-        this.vat = this.subTotal.subtract(this.netTotal);
+        MathContext mc = new MathContext(3);
+        BigDecimal taxRate = (new BigDecimal(this.taxRate)).divide(new BigDecimal("100.0"),mc);
+        BigDecimal divisor = BigDecimal.valueOf(1).add((taxRate));
+
+        System.out.println("divisor: "+divisor);
+        System.out.println("taxRate: "+taxRate);
+        System.out.println("subTotal: "+subTotal);
+        this.subTotalVat = this.subTotal.divide(divisor,MathContext.DECIMAL64).multiply(taxRate,mc);
+        this.totalVat = this.total.divide(divisor,MathContext.DECIMAL64).multiply(taxRate,mc);
+
+
     }
     @Override
     public String toString() {
