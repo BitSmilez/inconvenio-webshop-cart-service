@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class CartController {
+
     @Autowired
     ICartService cartService;
 
@@ -17,10 +18,8 @@ public class CartController {
         this.cartService = cartService;
     }
 
-    @GetMapping(value="/cart/{cartID}")
-    public CartDTO getProducts(@PathVariable(name="cartID") String cartID) {
-        
-
+    @GetMapping(value = "/cart/{cartID}")
+    public CartDTO getProducts(@PathVariable(name = "cartID") String cartID) {
         return cartService.getProducts(cartID);
     }
 }
