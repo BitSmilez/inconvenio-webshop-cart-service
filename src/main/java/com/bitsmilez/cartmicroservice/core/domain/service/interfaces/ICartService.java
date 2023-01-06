@@ -1,7 +1,7 @@
 package com.bitsmilez.cartmicroservice.core.domain.service.interfaces;
 
-import com.bitsmilez.cartmicroservice.port.dto.CartDTO;
-import com.bitsmilez.cartmicroservice.port.dto.ProductDTO;
+import com.bitsmilez.cartmicroservice.core.domain.service.impl.dto.CartDTO;
+import com.bitsmilez.cartmicroservice.core.domain.service.impl.dto.ProductDTO;
 
 public interface ICartService {
 
