@@ -1,6 +1,5 @@
 package com.bitsmilez.cartmicroservice.port.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,13 +12,13 @@ import java.util.UUID;
 @NoArgsConstructor
 public class ProductDTO {
     private UUID productID;
+    private String cartID;
     private String productName;
     private BigDecimal productPrice;
     private BigDecimal productSalesPrice;
     private String productImg;
     private int quantity;
-    @JsonIgnore
-    private CartDTO cart;
+
 
     @Override
     public String toString() {
@@ -30,7 +29,6 @@ public class ProductDTO {
                 ", productSalesPrice=" + productSalesPrice +
                 ", productImg='" + productImg + '\'' +
                 ", quantity=" + quantity +
-                ", cart=" + cart.getCartID() +
                 '}';
     }
 }

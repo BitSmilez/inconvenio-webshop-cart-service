@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.math.BigDecimal;
-import java.util.UUID;
 
 @Data
 @NoArgsConstructor
@@ -14,9 +13,9 @@ import java.util.UUID;
 @ToString
 public class ProductMessage {
 
-    private UUID messageID;
+    private String messageID;
+    private String productID;
     private String userID;
-    private UUID productID;
     private String productName;
     private BigDecimal productPrice;
     private BigDecimal productSalesPrice;
