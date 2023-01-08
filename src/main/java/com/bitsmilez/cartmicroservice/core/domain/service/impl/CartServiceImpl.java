@@ -3,8 +3,8 @@ package com.bitsmilez.cartmicroservice.core.domain.service.impl;
 import com.bitsmilez.cartmicroservice.core.domain.model.ProductID;
 import com.bitsmilez.cartmicroservice.core.domain.service.interfaces.ICartService;
 import com.bitsmilez.cartmicroservice.core.domain.service.interfaces.IProductRepository;
-import com.bitsmilez.cartmicroservice.port.dto.CartDTO;
-import com.bitsmilez.cartmicroservice.port.dto.ProductDTO;
+import com.bitsmilez.cartmicroservice.core.domain.service.impl.dto.CartDTO;
+import com.bitsmilez.cartmicroservice.core.domain.service.impl.dto.ProductDTO;
 import com.bitsmilez.cartmicroservice.port.mapper.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,9 +27,14 @@ public class CartServiceImpl implements ICartService {
     @Override
     public CartDTO getProducts(String cartID) {
         List<ProductDTO> products = productRepository.findByProductIDCartID(cartID).stream().map(Mapper::toProductDTO).toList();
-        CartDTO cartDTO = new CartDTO(cartID);
-        cartDTO.setItems(products);
-        return cartDTO;
+        if ( products.size()!=0){
+            CartDTO cartDTO = new CartDTO(cartID);
+            cartDTO.setItems(products);
+            return cartDTO;
+        }
+        else{
+            return null;
+        }
     }
 
     @Override

@@ -29,9 +29,9 @@ public class CartMicroserviceApplication {
 			
 			
 
-			Product product= new Product(new ProductID(UUID.nameUUIDFromBytes("9d94ae9f-3b8f-47ed-89ab-8bb808e94521".getBytes()),cartID), "fork", new BigDecimal(10), new BigDecimal(3), "https://ucarecdn.com/ac45e974-a77e-4f1c-86d1-f189204d18df", 10);
-			Product product2=(new Product(new ProductID( UUID.nameUUIDFromBytes("1d56d360-5495-4dd2-96c1-a87b444bba56".getBytes()),cartID), "champa", new BigDecimal(12), null, "https://ucarecdn.com/9f95c6c4-ace3-4f59-a0da-e0c15591e002/", 5));
-			Product product3=( new Product(new ProductID( UUID.nameUUIDFromBytes("3372a9ba-ca98-4718-a7c2-fa7272a011fd".getBytes()),cartID), "mug", new BigDecimal("17.5"), null, "https://ucarecdn.com/8f73e3b8-bc9c-46d1-a0f7-1bad02629692/", 5));
+			Product product= new Product(new ProductID(UUID.nameUUIDFromBytes("9d94ae9f-3b8f-47ed-89ab-8bb808e94521".getBytes()),cartID), "fork", new BigDecimal(10), new BigDecimal(3), "https://ucarecdn.com/ac45e974-a77e-4f1c-86d1-f189204d18df/", 1);
+			Product product2=(new Product(new ProductID( UUID.nameUUIDFromBytes("1d56d360-5495-4dd2-96c1-a87b444bba56".getBytes()),cartID), "champa", new BigDecimal(12), null, "https://ucarecdn.com/9f95c6c4-ace3-4f59-a0da-e0c15591e002/", 2));
+			Product product3=( new Product(new ProductID( UUID.nameUUIDFromBytes("3372a9ba-ca98-4718-a7c2-fa7272a011fd".getBytes()),cartID), "mug", new BigDecimal("17.5"), null, "https://ucarecdn.com/8f73e3b8-bc9c-46d1-a0f7-1bad02629692/", 1));
 
 
 			repository.save(product);

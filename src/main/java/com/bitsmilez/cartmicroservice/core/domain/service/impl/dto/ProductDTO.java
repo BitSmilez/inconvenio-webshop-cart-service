@@ -1,4 +1,4 @@
-package com.bitsmilez.cartmicroservice.port.dto;
+package com.bitsmilez.cartmicroservice.core.domain.service.impl.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
