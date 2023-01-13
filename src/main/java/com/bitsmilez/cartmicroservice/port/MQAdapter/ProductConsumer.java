@@ -19,10 +19,17 @@ public class ProductConsumer {
         this.cartService = cartService;
     }
 
-    @RabbitListener(queues = MQConfig.PRODUCT_QUEUE)
+    @RabbitListener(queues = MQConfig.ADD_PRODUCT_QUEUE)
     public void receiveProductMessage(ProductMessage productMessage){
-        System.out.println("Received product message: " + productMessage);
+        System.out.println("Received Add message: " + productMessage);
         ProductDTO receivedProduct = Mapper.toProductDTO(productMessage);
         cartService.addProduct(receivedProduct);
     }
+
+    @RabbitListener(queues = MQConfig.REMOVE_PRODUCT_QUEUE)
+    public void receiveRemoveProductMessage(ProductMessage productMessage){
+        System.out.println("Received Remove message: " + productMessage);
+        cartService.removeProduct(productMessage.getUserID(), productMessage.getProductID());
+    }
+
 }
