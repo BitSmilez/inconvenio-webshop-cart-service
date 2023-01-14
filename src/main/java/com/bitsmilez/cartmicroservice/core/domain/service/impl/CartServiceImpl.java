@@ -56,6 +56,17 @@ public class CartServiceImpl implements ICartService {
                 (p) -> productRepository.delete(p)
         );
     }
+
+    @Override
+    public void updateProduct(String cartID, String productID, int quantity) {
+        ProductID id = new ProductID(UUID.fromString(productID), cartID);
+        productRepository.findById(id).ifPresent(
+                (p) -> {
+                    p.setQuantity(quantity);
+                    productRepository.save(p);
+                }
+        );
+    }
 }
 
 
