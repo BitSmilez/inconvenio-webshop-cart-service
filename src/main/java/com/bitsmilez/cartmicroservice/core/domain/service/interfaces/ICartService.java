@@ -7,5 +7,8 @@ public interface ICartService {
 
 
     CartDTO getProducts(String cartID);
+
     void addProduct(ProductDTO product);
+
+    void removeProduct(String cartID, String productID);
 }

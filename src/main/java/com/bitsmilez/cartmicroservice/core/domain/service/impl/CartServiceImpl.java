@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class CartServiceImpl implements ICartService {
@@ -21,7 +22,6 @@ public class CartServiceImpl implements ICartService {
         super();
         this.productRepository = productRepository;
     }
-
 
 
     @Override
@@ -46,6 +46,14 @@ public class CartServiceImpl implements ICartService {
                     productRepository.save(p);
                 },
                 () -> productRepository.save(Mapper.toProduct(product))
+        );
+    }
+
+    @Override
+    public void removeProduct(String cartID, String productID) {
+        ProductID id = new ProductID(UUID.fromString(productID), cartID);
+        productRepository.findById(id).ifPresent(
+                (p) -> productRepository.delete(p)
         );
     }
 }
