@@ -11,4 +11,7 @@ public interface ICartService {
     void addProduct(ProductDTO product);
 
     void removeProduct(String cartID, String productID);
+
+    void updateProduct(String cartID, String productID, int quantity);
+
 }
