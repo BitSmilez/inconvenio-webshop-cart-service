@@ -67,6 +67,13 @@ public class CartServiceImpl implements ICartService {
                 }
         );
     }
+
+    @Override
+    public void removeAllProducts(String cartID) {
+        ProductID id = new ProductID();
+        id.setCartID(cartID);
+        productRepository.deleteAllByProductID_CartID(cartID);
+    }
 }
 
 
