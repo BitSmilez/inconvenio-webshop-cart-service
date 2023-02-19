@@ -1,7 +1,7 @@
 package com.bitsmilez.cartmicroservice.port.mapper;
 
 import com.bitsmilez.cartmicroservice.core.domain.model.Product;
-import com.bitsmilez.cartmicroservice.config.MQConfig.ProductMessage;
+import com.bitsmilez.cartmicroservice.config.ProductMessage;
 import com.bitsmilez.cartmicroservice.core.domain.model.ProductID;
 import com.bitsmilez.cartmicroservice.core.domain.service.impl.dto.CartDTO;
 import com.bitsmilez.cartmicroservice.core.domain.service.impl.dto.ProductDTO;

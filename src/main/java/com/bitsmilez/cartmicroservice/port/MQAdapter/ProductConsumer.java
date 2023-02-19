@@ -1,7 +1,7 @@
 package com.bitsmilez.cartmicroservice.port.MQAdapter;
 
-import com.bitsmilez.cartmicroservice.config.MQConfig.MQConfig;
-import com.bitsmilez.cartmicroservice.config.MQConfig.ProductMessage;
+import com.bitsmilez.cartmicroservice.config.MQConfig;
+import com.bitsmilez.cartmicroservice.config.ProductMessage;
 import com.bitsmilez.cartmicroservice.core.domain.service.interfaces.ICartService;
 import com.bitsmilez.cartmicroservice.core.domain.service.impl.dto.ProductDTO;
 import com.bitsmilez.cartmicroservice.port.mapper.Mapper;
