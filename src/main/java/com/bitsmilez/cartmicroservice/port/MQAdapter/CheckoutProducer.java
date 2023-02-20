@@ -41,7 +41,7 @@ public class CheckoutProducer {
         LOGGER.info(String.format("Sending Checkout Message to Queue -> %s", checkoutMessage));
         Integer response = (Integer) checkoutTemplate.convertSendAndReceive(MQConfig.CHECKOUT_EXCHANGE, MQConfig.CHECKOUT_TOPIC, checkoutMessage);
         LOGGER.info(String.format("Received Checkout ID -> %s", response));
-        if (response == 200){
+        if (response!= null ||response == 200){
             cartService.removeAllProducts(checkoutMessage.getUserID());
 
         }
