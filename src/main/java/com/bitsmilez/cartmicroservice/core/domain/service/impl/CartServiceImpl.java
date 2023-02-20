@@ -6,6 +6,7 @@ import com.bitsmilez.cartmicroservice.core.domain.service.interfaces.IProductRep
 import com.bitsmilez.cartmicroservice.core.domain.service.impl.dto.CartDTO;
 import com.bitsmilez.cartmicroservice.core.domain.service.impl.dto.ProductDTO;
 import com.bitsmilez.cartmicroservice.port.mapper.Mapper;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -66,6 +67,13 @@ public class CartServiceImpl implements ICartService {
                     productRepository.save(p);
                 }
         );
+    }
+    @Transactional
+    @Override
+    public void removeAllProducts(String cartID) {
+        ProductID id = new ProductID();
+        id.setCartID(cartID);
+        productRepository.deleteAllByProductID_CartID(cartID);
     }
 }
 

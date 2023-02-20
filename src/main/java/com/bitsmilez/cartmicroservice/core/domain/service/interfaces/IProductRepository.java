@@ -11,5 +11,5 @@ import java.util.ArrayList;
 public interface IProductRepository extends JpaRepository<Product, ProductID> {
 
     ArrayList<Product> findByProductIDCartID(String cartID);
-
+    void deleteAllByProductID_CartID(String cartID);
 }
