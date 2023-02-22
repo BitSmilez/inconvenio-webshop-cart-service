@@ -28,7 +28,7 @@ public class CheckoutProducer {
     @Autowired
     private final ICartService cartService;
 
-    public CheckoutProducer(RabbitTemplate checkoutTemplate,ICartService cartService) {
+    public CheckoutProducer(RabbitTemplate checkoutTemplate, ICartService cartService) {
         super();
         this.checkoutTemplate = checkoutTemplate;
         this.cartService = cartService;
@@ -41,11 +41,13 @@ public class CheckoutProducer {
         LOGGER.info(String.format("Sending Checkout Message to Queue -> %s", checkoutMessage));
         Integer response = (Integer) checkoutTemplate.convertSendAndReceive(MQConfig.CHECKOUT_EXCHANGE, MQConfig.CHECKOUT_TOPIC, checkoutMessage);
         LOGGER.info(String.format("Received Checkout ID -> %s", response));
-        if (response!= null ||response == 200){
+        if (response != null && response == 200) {
             cartService.removeAllProducts(checkoutMessage.getUserID());
+            return new ResponseEntity<>(HttpStatus.valueOf(response));
+        } else {
+            return new ResponseEntity<>(HttpStatus.REQUEST_TIMEOUT);
 
         }
-        return new ResponseEntity<>(HttpStatus.valueOf(response));
 
     }
 }
