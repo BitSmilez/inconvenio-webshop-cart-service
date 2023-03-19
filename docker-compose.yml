@@ -3,7 +3,25 @@ volumes:
   postgres:
 
 services:
-
+  app:
+    container_name: cart-service-app
+    # image: bigsmilez/inconvenio-webshop:product-service
+    command: java -jar target/cart-microservice-0.0.1-SNAPSHOT.jar
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/postgres
+      - SPRING_DATASOURCE_USERNAME=admin
+      - SPRING_DATASOURCE_PASSWORD=admin
+      - SPRING_RABBITMQ_HOST=inconv-rabbit-mq
+      - SERVER_PORT=8081
+    depends_on:
+      - postgres
+    networks:
+      - backend
   postgres:
     container_name: postgres
     image: postgres
@@ -16,3 +34,10 @@ services:
     ports:
       - "5432:5432"
     restart: unless-stopped
+    networks:
+      - backend
+networks:
+  backend:
+    driver: bridge
+    external: true
+    name: backend
