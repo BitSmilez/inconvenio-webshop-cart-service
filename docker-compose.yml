@@ -5,7 +5,7 @@ volumes:
 services:
   app:
     container_name: cart-service-app
-    # image: bigsmilez/inconvenio-webshop:product-service
+    #image: bigsmilez/inconvenio-webshop:cart-service
     command: java -jar target/cart-microservice-0.0.1-SNAPSHOT.jar
     build:
       context: .
