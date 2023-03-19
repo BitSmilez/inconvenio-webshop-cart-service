@@ -13,7 +13,7 @@ services:
     ports:
       - "8081:8081"
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/postgres
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres_cart:5432/postgres
       - SPRING_DATASOURCE_USERNAME=admin
       - SPRING_DATASOURCE_PASSWORD=admin
       - SPRING_RABBITMQ_HOST=inconv-rabbit-mq
@@ -23,7 +23,7 @@ services:
     networks:
       - backend
   postgres:
-    container_name: postgres
+    container_name: postgres_cart
     image: postgres
     environment:
       POSTGRES_USER: "admin"
