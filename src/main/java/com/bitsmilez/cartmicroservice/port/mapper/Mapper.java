@@ -28,6 +28,19 @@ public class Mapper {
         return new ModelMapper().map(product, Product.class);
     }
 
+    public static ProductMessage mapToProductMessage(ProductDTO productDto, int quantity, String userID) {
+        ProductMessage productMessage = new ProductMessage();
+        productMessage.setMessageID(UUID.randomUUID().toString());
+        productMessage.setProductID(productDto.getProductID().toString());
+        productMessage.setUserID(userID);
+        productMessage.setProductName(productDto.getProductName());
+        productMessage.setProductPrice(productDto.getProductPrice());
+        productMessage.setProductSalesPrice(productDto.getProductSalesPrice());
+        productMessage.setProductImg(productDto.getProductImg());
+        productMessage.setQuantity(quantity);
+        return productMessage;
+    }
+
     public static CheckoutMessage toCheckoutMessage(JsonNode checkoutBody) {
         ObjectNode orderSummary = (ObjectNode) checkoutBody.get("orderSummary");
         JsonNode orderItemsNode = orderSummary.get("orderItems");
