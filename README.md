@@ -29,9 +29,9 @@ Navigate to the project directory:
 
 To start the Cart Microservice using Docker, run the following command:
 
-bash
 
-docker-compose up
+
+    docker-compose up
 
 This will start the microservice and any required infrastructure, such as a message queue, in separate containers. The API will be accessible on http://localhost:8081.
 API Endpoints
