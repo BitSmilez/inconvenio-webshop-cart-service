@@ -23,7 +23,7 @@ Clone the repository:
 
 
 
-Usage
+### Usage
 
 Navigate to the project directory:
 
